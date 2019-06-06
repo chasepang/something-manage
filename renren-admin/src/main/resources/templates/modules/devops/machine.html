@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>服务管理</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("devops:machine:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("devops:machine:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("devops:machine:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">云ID</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="machine.cloudId" placeholder="云ID"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">服务器名</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="machine.name" placeholder="服务器名"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">CPU</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="machine.cpu" placeholder="CPU"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">内存</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="machine.ram" placeholder="内存"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">操作系统</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="machine.oprSystem" placeholder="操作系统"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">私网IP</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="machine.privateIp" placeholder="私网IP"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">公网IP</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="machine.publicIp" placeholder="公网IP"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">到期时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="machine.expires" placeholder="到期时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">带宽</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="machine.bandwidth" placeholder="带宽"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">介绍</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="machine.intro" placeholder="介绍"/>
+                        </div>
+                    </div>
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" id="btnSaveOrUpdate" data-loading-text="保存中..." @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/devops/machine.js?_${.now?long}"></script>
+</body>
+</html>

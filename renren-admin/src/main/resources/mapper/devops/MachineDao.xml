@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.devops.dao.MachineDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.devops.entity.MachineEntity" id="machineMap">
+        <result property="machineId" column="machine_id"/>
+        <result property="cloudId" column="cloud_id"/>
+        <result property="name" column="name"/>
+        <result property="cpu" column="cpu"/>
+        <result property="ram" column="ram"/>
+        <result property="oprSystem" column="opr_system"/>
+        <result property="privateIp" column="private_ip"/>
+        <result property="publicIp" column="public_ip"/>
+        <result property="expires" column="expires"/>
+        <result property="bandwidth" column="bandwidth"/>
+        <result property="intro" column="intro"/>
+    </resultMap>
+
+
+</mapper>
